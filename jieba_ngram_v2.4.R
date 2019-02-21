@@ -49,6 +49,7 @@ cutter <- worker(bylines = TRUE)
 #設定白名單
 setwd(setting_location)
 white_list <- read_excel("White_List.xlsx")
+colnames(white_list) <- "ngrams"
 
 #啟動多核心
 cl_num <- detectCores()
@@ -172,9 +173,8 @@ repeat
 rm(content_select,article_con,ng_table_sum,ng_words,ng_table,ng_table1,select_num,select_num1,pb_j)
 
 #製作斷詞清單及輸入白名單
-ng_table_unique <- ng_table_sum1$ngrams %>% tibble()
-ng_table_unique <- cbind(ng_table_unique,white_list)
-colnames(ng_table_unique) <- "ngrams"
+ng_table_unique <- ng_table_sum1["ngrams"]
+ng_table_unique <- rbind(ng_table_unique,white_list)
 
 #標記純數字英文的文章
 ng_table_dim_notc_label <- as.character()
