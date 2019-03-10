@@ -1,6 +1,5 @@
 # text_mining_preprocess
 社群文字資料前處理
-
 ##排除抽獎活動文
 [lottery_labeled.R]
 
